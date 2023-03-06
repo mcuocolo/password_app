@@ -9,7 +9,7 @@ psw = Password()
 
 with st.form("my_form"):
     st.subheader("Choose password options")
-    psw.length = st.slider("Password length : ", min_value=4, max_value=16, step=1)
+    psw.length = st.slider("Password length : ", min_value=4, max_value=32, value=12, step=2)
     col1, col2 = st.columns(2)
     #input widgets in 2 columns
     with col1:
