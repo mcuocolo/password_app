@@ -1,4 +1,5 @@
-from random import choice
+import secrets
+import string
 
 
 """ Password class with options as variables and method
@@ -30,7 +31,7 @@ class Password:
 
     allow_symbols : Bool
         the parameter that specifies if symbols are to be included in the long string
-        symbols are : "!@#$%^&*()+"
+        symbols are : "!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
         default value = True,
 
     allow_lowercase : Bool
@@ -106,13 +107,13 @@ class Password:
         NB: Generated long string can be empty if all options are set to False """
 
         if self.allow_numbers:
-            self._long_string += "0123456789"
+            self._long_string += string.digits
         if self.allow_symbols:
-            self._long_string += "!@#$%^&*()+"
+            self._long_string += string.punctuation
         if self.allow_uppercase:
-            self._long_string += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            self._long_string += string.ascii_uppercase
         if self.allow_lowercase:
-            self._long_string += "abcdefghijklmnopqrstuvwxyz"
+            self._long_string += string.ascii_lowercase
         if not self.allow_similar:
             for char in similar_char:
                 self._long_string = self._long_string.replace(char, "")
@@ -138,7 +139,7 @@ class Password:
         if self._long_string_length_ok():
             chars = []
             for i in range(self.length):
-                char = choice(self._long_string)
+                char = secrets.choice(self._long_string)
                 chars.append(char)
                 if not self.allow_duplicates:
                     string = string.replace(char, "")
